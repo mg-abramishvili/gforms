@@ -21,10 +21,10 @@
                 </template>
 
                 <template v-if="question.type == 'single'">
-                    <div v-for="variant in question.variations" class="radio">
-                        <input v-model="questions[selected.question].answer" type="radio" :id="'sq' + index" :value="variant">
-                        <label for="'sq' + index">{{ variant }}</label>
-                    </div>
+                    <label v-for="variant in question.variations" class="radio single-radio">
+                        <input v-model="questions[selected.question].answer" type="radio" :value="variant">
+                        {{ variant }}
+                    </label>
                 </template>
             </div>
         </template>
