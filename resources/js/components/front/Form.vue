@@ -12,10 +12,10 @@
                             {{ subquestion.title }}
                         </div>
                         <div class="subquestion-variations">
-                            <div v-for="variant in subquestion.variations" class="radio">
-                                <input v-model="questions[selected.question].subquestions[index].answer" type="radio" :id="'sq' + index" :value="variant">
-                                <label for="'sq' + index">{{ variant }}</label>
-                            </div>
+                            <label v-for="variant in subquestion.variations" class="radio">
+                                <input v-model="questions[selected.question].subquestions[index].answer" type="radio" :value="variant">
+                                {{ variant }}
+                            </label>
                         </div>
                     </div>
                 </template>
