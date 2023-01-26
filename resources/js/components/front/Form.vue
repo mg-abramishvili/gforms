@@ -7,16 +7,23 @@
                 <h2>{{ question.title }}</h2>
 
                 <template v-if="question.type == 'group'">
-                    <div v-for="subquestion in question.subquestions" class="subquestion">
+                    <div v-for="(subquestion, index) in question.subquestions" class="subquestion">
                         <div class="subquestion-title">
                             {{ subquestion.title }}
                         </div>
                         <div class="subquestion-variations">
                             <div v-for="variant in subquestion.variations" class="radio">
-                                <input type="radio" :id="'sq' + index" :value="variant">
+                                <input v-model="questions[selected.question].subquestions[index].answer" type="radio" :id="'sq' + index" :value="variant">
                                 <label for="'sq' + index">{{ variant }}</label>
                             </div>
                         </div>
+                    </div>
+                </template>
+
+                <template v-if="question.type == 'single'">
+                    <div v-for="variant in question.variations" class="radio">
+                        <input v-model="questions[selected.question].answer" type="radio" :id="'sq' + index" :value="variant">
+                        <label for="'sq' + index">{{ variant }}</label>
                     </div>
                 </template>
             </div>
@@ -251,6 +258,12 @@ export default {
                             variations: ['Да', 'Нет'],
                             answer: null
                         },
+                    ]
+                },
+                {
+                    type: 'group',
+                    title: 'Прочее',
+                    subquestions:[
                         {
                             title: 'Считаете ли Вы, что в этой компании у Вас есть хорошие возможности профессионального и карьерного роста?',
                             variations: ['Да', 'Нет'],
@@ -287,6 +300,12 @@ export default {
             this.selected.question = this.selected.question - 1
         },
         nextQuestion() {
+            let currentQuestion = this.questions[this.selected.question]
+
+            if(currentQuestion.type == 'single' && !currentQuestion.answer) {
+                return alert('Нужен ответ!')
+            }
+
             this.selected.question = this.selected.question + 1
         }
     },
