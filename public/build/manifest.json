@@ -1,0 +1,31 @@
+{
+  "resources/css/front.css": {
+    "file": "assets/front-fcda8b54.css",
+    "src": "resources/css/front.css",
+    "isEntry": true
+  },
+  "resources/css/admin.css": {
+    "file": "assets/admin-b5a1f3b5.css",
+    "src": "resources/css/admin.css",
+    "isEntry": true
+  },
+  "resources/js/front.js": {
+    "file": "assets/front-39faac5d.js",
+    "src": "resources/js/front.js",
+    "isEntry": true,
+    "imports": [
+      "__plugin-vue_export-helper-b874d88e.js"
+    ]
+  },
+  "resources/js/admin.js": {
+    "file": "assets/admin-191b3bb6.js",
+    "src": "resources/js/admin.js",
+    "isEntry": true,
+    "imports": [
+      "__plugin-vue_export-helper-b874d88e.js"
+    ]
+  },
+  "__plugin-vue_export-helper-b874d88e.js": {
+    "file": "assets/_plugin-vue_export-helper-b874d88e.js"
+  }
+}
