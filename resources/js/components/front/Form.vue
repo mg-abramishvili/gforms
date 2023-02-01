@@ -31,12 +31,11 @@
 
         <button v-if="!selected.question == 0" @click="prevQuestion()">Назад</button>
         <button v-if="questions[selected.question + 1]" @click="nextQuestion()">Далее</button>
+        <button v-if="!selected.question == 0 && !questions[selected.question + 1]" @click="save()">Отправить!</button>
     </div>
 </template>
 
 <script>
-import GForm from './Form.vue'
-
 export default {
     data() {
         return {
@@ -289,13 +288,6 @@ export default {
         }
     },
     methods: {
-        closeGForm() {
-            document.getElementsByClassName('gform')[0].classList.add('gform-close')
-
-            setTimeout(() => {
-                this.views.gform = false
-            }, 500)
-        },
         prevQuestion() {
             this.selected.question = this.selected.question - 1
         },
@@ -303,10 +295,18 @@ export default {
             let currentQuestion = this.questions[this.selected.question]
 
             if(currentQuestion.type == 'single' && !currentQuestion.answer) {
-                return alert('Нужен ответ!')
+                return
             }
 
             this.selected.question = this.selected.question + 1
+        },
+        save() {
+            axios.post('/_forms', {
+                data: this.questions
+            })
+            .then(response => {
+                this.$parent.closeGForm()
+            })
         }
     },
 }

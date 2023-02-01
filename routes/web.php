@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('{any}', function () {
+Route::get('/', function () {
     return view('front');
-})->where('any', '^(?!admin).*$');
+});
+
+Route::get('_forms', [App\Http\Controllers\FormController::class, 'index']);
+Route::get('_form/{id}', [App\Http\Controllers\FormController::class, 'form']);
+Route::post('_forms', [App\Http\Controllers\FormController::class, 'store']);
 
 Route::get('/admin', function () {
     return view('admin');

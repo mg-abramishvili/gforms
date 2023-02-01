@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './components/admin/Home.vue'
-import FormEditor from './components/admin/forms/Editor.vue'
+import FormItem from './components/admin/FormItem.vue'
+import Stat from './components/admin/Stat.vue'
 
 const routes = [
     {
@@ -10,9 +11,14 @@ const routes = [
         component: Home
     },
     {
-        path: '/admin/forms/:id?/editor',
-        name: 'FormEditor',
-        component: FormEditor
+        path: '/admin/form/:id',
+        name: 'FormItem',
+        component: FormItem
+    },
+    {
+        path: '/admin/stat',
+        name: 'Stat',
+        component: Stat
     },
 ];
 
